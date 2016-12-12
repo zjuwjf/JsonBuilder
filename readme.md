@@ -1,5 +1,5 @@
 #JsonBuilder
-### a faset and convenient tool to build a json without a break!
+### a very fast and convenient tool to build a json without a break!
 	
 
 
