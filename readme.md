@@ -5,7 +5,7 @@
 
 ## Simples
 
-### EmptyObject
+### Empty-Object
 		final JB jb = new GsonJB();
 		//@formatter:off
 		jb.o()
@@ -17,7 +17,7 @@
 		{}
 
 ###### .
-### EmptyArray
+### Empty-Array
 		final JB jb = new GsonJB();
 		//@formatter:off
 		jb.a()
@@ -29,7 +29,7 @@
 		[]
 
 ###### .
-### SimpleObject
+### Simple-Object
 		final JB jb = new GsonJB();
 		//@formatter:off
 		jb.o()
@@ -56,7 +56,7 @@
 		}
 
 ###### .
-### SimpleArray
+### Simple-Array
 		final JB jb = new GsonJB();
 		//@formatter:off
 		jb.a()
@@ -85,7 +85,7 @@
 		]
 
 ###### .
-### ObjectIf
+### Object-If
 		Product product = new Product("Noodle", "China-HangZhou", new SimpleDateFormat("yyyy-MM-dd").parse("2016-11-11"), 120);
 
 		final JB jb = new GsonJB();
@@ -112,7 +112,7 @@
 		}
 
 ###### .
-### ArrayIf
+### Array-If
 		Product product = new Product("Noodle", "China-HangZhou", new SimpleDateFormat("yyyy-MM-dd").parse("2016-11-11"), 120);
 
 		final JB jb = new GsonJB();
@@ -139,7 +139,7 @@
 		]
 
 ###### .
-### KeyIf
+### Key-If
 		Product product = new Product("Noodle", "China-HangZhou", new SimpleDateFormat("yyyy-MM-dd").parse("2016-11-11"), 120);
 
 		final JB jb = new GsonJB();
@@ -165,31 +165,8 @@
 		  "price": 120.0
 		}
 
-
 ###### .
-### EmptyArray
-		final JB jb = new GsonJB();
-		//@formatter:off
-		jb.a()
-		.ea();
-		//@formatter:on
-
-		log(jb);
-#### output
-
-###### .
-### EmptyArray
-		final JB jb = new GsonJB();
-		//@formatter:off
-		jb.a()
-		.ea();
-		//@formatter:on
-
-		log(jb);
-#### output
-
-###### .
-### ObjectFor
+### Object-For
 		Integer[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
 		final JB jb = new GsonJB();
@@ -220,7 +197,7 @@
 		}
 
 ###### .
-### ArrayFor
+### Array-For
 		Integer[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
 		final JB jb = new GsonJB();
@@ -251,7 +228,7 @@
 		}
 
 ###### .
-### ObjectParse
+### Object-Parse
 		Product product = new Product("Noodle", "China-HangZhou", new SimpleDateFormat("yyyy-MM-dd").parse("2017-11-11"), 120);
 		ProductExtra productExtra = new ProductExtra("taobao");
 		ProductPromotionPolicy promotionPolicy = new ProductPromotionPolicy("满100减30");
@@ -278,7 +255,7 @@
 		}
 
 ###### .
-### ArrayParse
+### Array-Parse
 		Product product = new Product("Noodle", "China-HangZhou", new SimpleDateFormat("yyyy-MM-dd").parse("2017-11-11"), 120);
 		ProductExtra productExtra = new ProductExtra("taobao");
 		ProductPromotionPolicy promotionPolicy0 = new ProductPromotionPolicy("满100减30");
