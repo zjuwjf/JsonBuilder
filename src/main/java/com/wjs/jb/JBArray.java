@@ -12,18 +12,18 @@ import com.wjs.jb.abs.IJBFilter;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
 public class JBArray<ParentType extends IJBAppend> extends IJBArray<ParentType> implements JBConstants {
 
-	private final AbsJB jb;
+	private final JB jb;
 	private final ParentType parent;
 	private final String key;
 	private final boolean reality;
 	private final IJBFilter filter;
 	private Object target;
 
-	JBArray(AbsJB jb, ParentType parent, String key, boolean reality, IJBFilter filter) {
+	JBArray(JB jb, ParentType parent, String key, boolean reality, IJBFilter filter) {
 		this.jb = jb;
 		this.parent = parent;
 		this.key = key;
@@ -61,7 +61,7 @@ public class JBArray<ParentType extends IJBAppend> extends IJBArray<ParentType> 
 
 	@Override
 	public ParentType ea() {
-		if (reality() && parent != null) {
+		if (reality()) {
 			parent.append(key, target == null ? jb.jsonAdapter().empyArray() : target);
 		}
 
@@ -98,7 +98,7 @@ public class JBArray<ParentType extends IJBAppend> extends IJBArray<ParentType> 
 
 	@Override
 	public JBArrayIf<JBArray<ParentType>> if_(boolean _if) {
-		return new JBArrayIf<JBArray<ParentType>>(jb, this, reality(), false, _if);
+		return new JBArrayIf<JBArray<ParentType>>(jb, this, false, _if);
 	}
 
 	@Override

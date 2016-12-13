@@ -14,12 +14,12 @@ import com.wjs.jb.abs.IJBObjectFor;
  */
 public class JBObjectFor<ParentType extends IJBAppend, T> extends IJBBase implements IJBObjectFor<ParentType, T> {
 
-	private final AbsJB jb;
+	private final JB jb;
 	private final ParentType parent;
 	private final Collection<T> collection;
 	private final boolean reality;
 
-	JBObjectFor(AbsJB jb, ParentType parent, Collection<T> collection, boolean reality) {
+	JBObjectFor(JB jb, ParentType parent, Collection<T> collection, boolean reality) {
 		this.jb = jb;
 		this.parent = parent;
 		this.reality = reality;

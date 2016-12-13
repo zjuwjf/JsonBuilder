@@ -12,27 +12,25 @@ import com.wjs.jb.abs.IJBFilter;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
 public class JBArrayIf<ParentType extends IJBAppend> extends IJBArrayIf<ParentType> implements JBConstants {
 
-	private final AbsJB jb;
+	private final JB jb;
 	private final ParentType parent;
-	private final boolean parentReality;
 	private final boolean brotherReality;
 	private final boolean selfReality;
 
-	JBArrayIf(AbsJB jb, ParentType parent, boolean parentReality, boolean brotherReality, boolean selfReality) {
+	JBArrayIf(JB jb, ParentType parent, boolean brotherReality, boolean selfReality) {
 		this.jb = jb;
 		this.parent = parent;
-		this.parentReality = parentReality;
 		this.brotherReality = brotherReality;
 		this.selfReality = selfReality;
 	}
 
 	@Override
 	protected boolean reality() {
-		return parentReality && (!brotherReality) && selfReality;
+		return parent.reality() && (!brotherReality) && selfReality;
 	}
 
 	@Override
@@ -98,23 +96,23 @@ public class JBArrayIf<ParentType extends IJBAppend> extends IJBArrayIf<ParentTy
 
 	@Override
 	public JBArrayIf<JBArrayIf<ParentType>> if_(boolean _if) {
-		return new JBArrayIf<JBArrayIf<ParentType>>(jb, this, reality(), false, _if);
+		return new JBArrayIf<JBArrayIf<ParentType>>(jb, this, false, _if);
 	}
 
 	@Override
 	public JBArrayIf<ParentType> elseif(boolean _if) {
-		return new JBArrayIf<ParentType>(jb, parent, parent.reality(), (brotherReality || selfReality),  _if);
+		return new JBArrayIf<ParentType>(jb, parent, (brotherReality || selfReality),  _if);
 	}
 
 	@Override
-	public IJBArrayIf<ParentType> elseif(Object _if) {
+	public JBArrayIf<ParentType> elseif(Object _if) {
 		final boolean b = JBUtils.b(_if);
 		return elseif(b);
 	}
 
 	@Override
-	public IJBArrayIf<ParentType> else_() {
-		return elseif(true);
+	public JBArrayElse<ParentType> else_() {
+		return new JBArrayElse<ParentType>(jb, parent, (brotherReality || selfReality));
 	}
 
 	@Override

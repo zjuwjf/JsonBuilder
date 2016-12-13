@@ -8,15 +8,15 @@ import com.wjs.jb.abs.IJBKey;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
-public class JBKey<ParentType extends IJBAppend> extends IJBAppend implements IJBKey<ParentType>, JBConstants{
-	private final AbsJB jb;
+public class JBKey<ParentType extends IJBAppend> extends IJBKey<ParentType> implements JBConstants{
+	private final JB jb;
 	private final ParentType parent;
 	private final String key;
 	private final boolean reality;
 
-	JBKey(AbsJB jb, ParentType parent, String key, boolean reality) {
+	JBKey(JB jb, ParentType parent, String key, boolean reality) {
 		this.jb = jb;
 		this.parent = parent;
 		this.key = key;
@@ -25,7 +25,7 @@ public class JBKey<ParentType extends IJBAppend> extends IJBAppend implements IJ
 
 	@Override
 	public ParentType v(Object value) {
-		if(reality() && parent != null){
+		if(reality()){
 			parent.append(key, value);
 		}
 		return parent;
@@ -56,21 +56,21 @@ public class JBKey<ParentType extends IJBAppend> extends IJBAppend implements IJ
 		return reality;
 	}
 
-//	@Override
-//	public JBObjectIf<JBKey<ParentType>> if_(boolean _if) {
-//		return new JBObjectIf<JBKey<ParentType>>(jb, this, reality(), false, _if);
-//	}
-//
-//	@Override
-//	public JBObjectIf<JBKey<ParentType>> if_(Object _if) {
-//		final boolean b = JBUtils.b(_if);
-//		return if_(b);
-//	}
-
 	@Override
 	void append(String key, Object value) {
-		if(reality() && parent != null) {
+		if(reality()) {
 			parent.append(key, value);
 		}
+	}
+
+	@Override
+	public JBKeyIf<ParentType> if_(Object _if) {
+		final boolean b = JBUtils.b(_if);
+		return if_(b);
+	}
+
+	@Override
+	public JBKeyIf<ParentType> if_(boolean _if) {
+		return new JBKeyIf<ParentType>(jb, parent, key, false, _if);
 	}
 }

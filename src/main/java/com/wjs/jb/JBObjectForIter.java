@@ -19,7 +19,7 @@ public class JBObjectForIter<GrandParentType extends IJBAppend, T> extends IJBBa
 	private final IJBObjectIter<T> iter;
 	private final boolean reality;
 
-	JBObjectForIter(AbsJB jb, GrandParentType grandParent, Collection<T> collection, IJBObjectIter<T> iter, boolean reality) {
+	JBObjectForIter(JB jb, GrandParentType grandParent, Collection<T> collection, IJBObjectIter<T> iter, boolean reality) {
 		this.grandParent = grandParent;
 		this.collection = collection;
 		this.iter = iter;
@@ -33,7 +33,7 @@ public class JBObjectForIter<GrandParentType extends IJBAppend, T> extends IJBBa
 				int i= 0 ;
 				for(T t : collection) {
 					final JBEntry entry = iter.iter(i++, t);
-					if(entry != null && grandParent != null) {
+					if(entry != null) {
 						grandParent.append(entry.getKey(), entry.getValue());
 					}
 				}

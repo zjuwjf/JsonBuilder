@@ -13,17 +13,17 @@ import com.wjs.jb.abs.IJBObject;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
 public class JBObject<ParentType extends IJBAppend> extends IJBObject<ParentType> implements JBConstants {
-	private final AbsJB jb;
+	private final JB jb;
 	private final ParentType parent;
 	private final IJBFilter filter;
 	private final String key;
 	private final boolean reality;
 	private Object target;
 
-	JBObject(AbsJB jb, ParentType parent, String key, boolean reality, IJBFilter filter) {
+	JBObject(JB jb, ParentType parent, String key, boolean reality, IJBFilter filter) {
 		this.jb = jb;
 		this.parent = parent;
 		this.key = key;
@@ -39,7 +39,7 @@ public class JBObject<ParentType extends IJBAppend> extends IJBObject<ParentType
 
 	@Override
 	public ParentType eo() {
-		if (reality && parent != null) {
+		if (reality()) {
 			parent.append(key, target == null ? jb.jsonAdapter().empyObject() : target);
 		}
 
@@ -74,7 +74,7 @@ public class JBObject<ParentType extends IJBAppend> extends IJBObject<ParentType
 
 	@Override
 	public JBObjectIf<JBObject<ParentType>> if_(boolean _if) {
-		return new JBObjectIf<JBObject<ParentType>>(jb, this, reality(), false,  _if);
+		return new JBObjectIf<JBObject<ParentType>>(jb, this, false,  _if);
 	}
 
 	@Override

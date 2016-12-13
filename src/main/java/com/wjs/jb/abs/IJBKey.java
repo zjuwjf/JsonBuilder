@@ -3,25 +3,25 @@
  */
 package com.wjs.jb.abs;
 
+import com.wjs.jb.IJBAppend;
+
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
-public interface IJBKey<Parent>  {
+public abstract class IJBKey<Parent extends IJBAppend> extends IJBAppend{
 
-	Parent v(Object value);
+	public abstract Parent v(Object value);
 
-	IJBObject<Parent> o();
+	public abstract IJBObject<Parent> o();
 
-	IJBObject<Parent> o(IJBFilter filter);
+	public abstract IJBObject<Parent> o(IJBFilter filter);
 
-	IJBArray<Parent> a();
+	public abstract IJBArray<Parent> a();
 
-	IJBArray<Parent> a(IJBFilter filter);
+	public abstract IJBArray<Parent> a(IJBFilter filter);
 
-//	IJBObjectIf<? extends IJBKey<Parent>> if_(boolean _if) ;
-//
-//	IJBObjectIf<? extends IJBKey<Parent>> if_(Object _if) ;
-//
-//
+	public abstract IJBKeyIf<Parent> if_(boolean _if) ;
+
+	public abstract IJBKeyIf<Parent> if_(Object _if) ;
 }

@@ -14,12 +14,12 @@ import com.wjs.jb.abs.IJBArrayIter;
  */
 public class JBArrayFor<ParentType extends IJBAppend, T>  extends IJBBase implements IJBArrayFor<ParentType, T>, JBConstants {
 
-	private final AbsJB jb;
+	private final JB jb;
 	private final ParentType parent;
 	private final Collection<T> array;
 	private final boolean reality;
 
-	JBArrayFor(AbsJB jb, ParentType parent, Collection<T> collection, boolean reality) {
+	JBArrayFor(JB jb, ParentType parent, Collection<T> collection, boolean reality) {
 		this.jb = jb;
 		this.parent = parent;
 		this.reality = reality;

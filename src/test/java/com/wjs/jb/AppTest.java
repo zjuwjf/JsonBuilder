@@ -42,7 +42,7 @@ public class AppTest extends TestCase {
 	}
 
 	public void testEmptyObject() {
-		final GsonJB jb = new GsonJB();
+		final JB jb = new GsonJB();
 		//@formatter:off
 		jb.o()
 		.eo();
@@ -52,7 +52,7 @@ public class AppTest extends TestCase {
 	}
 
 	public void testObject() {
-		final GsonJB jb = new GsonJB();
+		final JB jb = new GsonJB();
 		//@formatter:off
 		jb.o()
 			.k("name").v("lingoes")
@@ -69,7 +69,7 @@ public class AppTest extends TestCase {
 	}
 
 	public void testEmptyArray() {
-		final GsonJB jb = new GsonJB();
+		final JB jb = new GsonJB();
 		//@formatter:off
 		jb.a()
 		.ea();
@@ -79,7 +79,7 @@ public class AppTest extends TestCase {
 	}
 
 	public void testArray() {
-		final GsonJB jb = new GsonJB();
+		final JB jb = new GsonJB();
 		//@formatter:off
 		jb.a()
 			.v(1)
@@ -96,10 +96,10 @@ public class AppTest extends TestCase {
 		log(jb);
 	}
 
-	public void testIf() throws ParseException {
+	public void testObjectIf() throws ParseException {
 		Product product = new Product("Noodle", "China-HangZhou", new SimpleDateFormat("yyyy-MM-dd").parse("2016-11-11"), 120);
 
-		final GsonJB jb = new GsonJB();
+		final JB jb = new GsonJB();
 		//@formatter:off
 		jb.o()
 			.k("productName").v(product.getProductName())
@@ -116,20 +116,55 @@ public class AppTest extends TestCase {
 		log(jb);
 	}
 
-	public void testFor() {
-		Integer[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	public void testKeyIf() throws ParseException {
+		Product product = new Product("Noodle", "China-HangZhou", new SimpleDateFormat("yyyy-MM-dd").parse("2016-11-11"), 120);
 
-		final GsonJB jb = new GsonJB();
+		final JB jb = new GsonJB();
 		//@formatter:off
 		jb.o()
-			.k("square-list").a()
-				.for_(array)
-					.it((v)->{return v*v;})
-				.efor()
-			.ea()
+			.k("productName").v(product.getProductName())
+			.k("placeOfOrigin").v(product.getPlaceOfOrigin())
+			.k("expirationDate").if_(product.getExpirationDate().before(new Date()))
+				.v("Out Of Date")
+			.else_()
+				.v(product.getExpirationDate())
+			.eif()
+			.k("price").v(product.getPrice())
+		.eo();
+		//@formatter:on
+
+		log(jb);
+	}
+
+	public void testArrayIf() throws ParseException {
+		Product product = new Product("Noodle", "China-HangZhou", new SimpleDateFormat("yyyy-MM-dd").parse("2016-11-11"), 120);
+
+		final JB jb = new GsonJB();
+		//@formatter:off
+		jb.a()
+			.v(product.getProductName())
+			.v(product.getPlaceOfOrigin())
+			.if_(product.getExpirationDate().before(new Date()))
+				.v("Out Of Date")
+			.else_()
+				.v(product.getExpirationDate())
+			.eif()
+			.v(product.getPrice())
+		.ea();
+		//@formatter:on
+
+		log(jb);
+	}
+
+	public void testObjectFor() {
+		Integer[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+		final JB jb = new GsonJB();
+		//@formatter:off
+		jb.o()
 			.k("square-table").o()
 				.for_(array)
-					.it((i, v)->{return new JBEntry(v+"*"+v,v*v);})
+					.it((i, v)->{ return new JBEntry(v+"*"+v,v*v); })
 				.efor()
 			.eo()
 		.eo();
@@ -138,14 +173,48 @@ public class AppTest extends TestCase {
 		log(jb);
 	}
 
-	public void testParse() throws ParseException {
+	public void testArrayFor() {
+		Integer[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+		final JB jb = new GsonJB();
+		//@formatter:off
+		jb.o()
+			.k("square-list").a()
+				.for_(array)
+					.it((v)->{return v*v;})
+				.efor()
+			.ea()
+		.eo();
+		//@formatter:on
+
+		log(jb);
+	}
+
+	public void testObjectParse() throws ParseException {
+		Product product = new Product("Noodle", "China-HangZhou", new SimpleDateFormat("yyyy-MM-dd").parse("2017-11-11"), 120);
+		ProductExtra productExtra = new ProductExtra("taobao");
+		ProductPromotionPolicy promotionPolicy = new ProductPromotionPolicy("满100减30");
+
+		final JB jb = new GsonJB();
+		//@formatter:off
+		jb.o()
+			.parse(product)
+			.parse(productExtra)
+			.parse(promotionPolicy)
+		.eo();
+		//@formatter:on
+
+		log(jb);
+	}
+
+	public void testArrayParse() throws ParseException {
 		Product product = new Product("Noodle", "China-HangZhou", new SimpleDateFormat("yyyy-MM-dd").parse("2017-11-11"), 120);
 		ProductExtra productExtra = new ProductExtra("taobao");
 		ProductPromotionPolicy promotionPolicy0 = new ProductPromotionPolicy("满100减30");
 		ProductPromotionPolicy promotionPolicy1 = new ProductPromotionPolicy("满300减100");
 		ProductPromotionPolicy promotionPolicy2 = new ProductPromotionPolicy("满500减200");
 
-		final GsonJB jb = new GsonJB();
+		final JB jb = new GsonJB();
 		//@formatter:off
 		jb.o()
 			.parse(product)

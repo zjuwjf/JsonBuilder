@@ -3,25 +3,28 @@
  */
 package com.wjs.jb.abs;
 
+import com.wjs.jb.IJBAppend;
+
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
-public interface IJBKeyIf<Parent>  {
+public abstract class IJBKeyIf<Parent extends IJBAppend> extends IJBAppend {
 
-	IJBKeyIf<Parent> v(Object value);
+	/***
+	 * Parent is IJBObject
+	 */
+	public abstract IJBKeyIfPrepareEnd<Parent> v(Object value);
 
-	IJBObject<? extends IJBKeyIf<Parent>> o();
+	public abstract IJBObject<? extends IJBKeyIfPrepareEnd<Parent>> o();
 
-	IJBObject<? extends IJBKeyIf<Parent>> o(IJBFilter filter);
+	public abstract IJBObject<? extends IJBKeyIfPrepareEnd<Parent>> o(IJBFilter filter);
 
-	IJBArray<? extends IJBKeyIf<Parent>> a();
+	public abstract IJBArray<? extends IJBKeyIfPrepareEnd<Parent>> a();
 
-	IJBArray<? extends IJBKeyIf<Parent>> a(IJBFilter filter);
+	public abstract IJBArray<? extends IJBKeyIfPrepareEnd<Parent>> a(IJBFilter filter);
 
-	IJBKeyIf<? extends IJBKeyIf<Parent>> if_(boolean _if) ;
+	public abstract IJBKeyIf<? extends IJBKeyIfPrepareEnd<Parent>> if_(boolean _if);
 
-	IJBKeyIf<? extends IJBKeyIf<Parent>> if_(Object _if) ;
-
-	void eif();
+	public abstract IJBKeyIf<? extends IJBKeyIfPrepareEnd<Parent>> if_(Object _if);
 }

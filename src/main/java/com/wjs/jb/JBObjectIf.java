@@ -12,20 +12,18 @@ import com.wjs.jb.abs.IJBObjectIf;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
 public class JBObjectIf<ParentType extends IJBAppend> extends IJBObjectIf<ParentType> {
 
-	private final AbsJB jb;
+	private final JB jb;
 	private final ParentType parent;
-	private final boolean parentReality;
 	private final boolean brotherReality;
 	private final boolean selfReality;
 
-	JBObjectIf(AbsJB jb, ParentType parent, boolean parentReality, boolean brotherReality, boolean selfReality) {
+	JBObjectIf(JB jb, ParentType parent, boolean brotherReality, boolean selfReality) {
 		this.jb = jb;
 		this.parent = parent;
-		this.parentReality = parentReality;
 		this.brotherReality = brotherReality;
 		this.selfReality = selfReality;
 	}
@@ -56,7 +54,7 @@ public class JBObjectIf<ParentType extends IJBAppend> extends IJBObjectIf<Parent
 
 	@Override
 	public JBObjectIf<JBObjectIf<ParentType>> if_(boolean _if) {
-		return new JBObjectIf<JBObjectIf<ParentType>>(jb, this, reality(), false, _if);
+		return new JBObjectIf<JBObjectIf<ParentType>>(jb, this, false, _if);
 	}
 
 	@Override
@@ -72,12 +70,12 @@ public class JBObjectIf<ParentType extends IJBAppend> extends IJBObjectIf<Parent
 
 	@Override
 	boolean reality() {
-		return parentReality && (!brotherReality) && selfReality;
+		return parent.reality() && (!brotherReality) && selfReality;
 	}
 
 	@Override
 	public JBObjectIf<ParentType> elseif(boolean _if) {
-		return new JBObjectIf<ParentType>(jb, parent, parent.reality(), (brotherReality || selfReality), _if);
+		return new JBObjectIf<ParentType>(jb, parent, (brotherReality || selfReality), _if);
 	}
 
 	@Override
@@ -87,8 +85,8 @@ public class JBObjectIf<ParentType extends IJBAppend> extends IJBObjectIf<Parent
 	}
 
 	@Override
-	public JBObjectIf<ParentType> else_() {
-		return elseif(true);
+	public JBObjectElse<ParentType> else_() {
+		return new JBObjectElse<ParentType>(jb, parent, (brotherReality || selfReality));
 	}
 
 	@Override

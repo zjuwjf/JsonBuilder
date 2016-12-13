@@ -5,7 +5,7 @@ package com.wjs.jb;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
 public abstract class IJBBase {
 	//the visible of a element

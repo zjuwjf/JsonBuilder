@@ -9,7 +9,7 @@ import com.wjs.jb.IJBAppend;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
 public abstract class IJBObjectIf<Parent> extends IJBAppend {
 
@@ -23,7 +23,7 @@ public abstract class IJBObjectIf<Parent> extends IJBAppend {
 
 	public abstract IJBObjectIf<Parent> elseif(Object _if);
 
-	public abstract IJBObjectIf<Parent> else_();
+	public abstract IJBObjectElse<Parent> else_();
 
 	public abstract <T> IJBObjectFor<? extends IJBObjectIf<Parent>, T> for_(T[] ts);
 

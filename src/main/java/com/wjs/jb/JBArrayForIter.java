@@ -19,7 +19,7 @@ public class JBArrayForIter<GrandParentType extends IJBAppend, T>  extends IJBBa
 	private final IJBArrayIter<T> iter;
 	private final boolean reality;
 
-	JBArrayForIter(AbsJB jb, GrandParentType grandParent, Collection<T> collection, IJBArrayIter<T> iter, boolean reality) {
+	JBArrayForIter(JB jb, GrandParentType grandParent, Collection<T> collection, IJBArrayIter<T> iter, boolean reality) {
 		this.grandParent = grandParent;
 		this.collection = collection;
 		this.iter = iter;

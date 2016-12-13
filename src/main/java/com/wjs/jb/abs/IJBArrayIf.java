@@ -9,7 +9,7 @@ import com.wjs.jb.IJBAppend;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
 public abstract class IJBArrayIf<Parent> extends IJBAppend {
 
@@ -33,7 +33,7 @@ public abstract class IJBArrayIf<Parent> extends IJBAppend {
 
 	public abstract IJBArrayIf<Parent> elseif(Object _if);
 
-	public abstract IJBArrayIf<Parent> else_();
+	public abstract IJBArrayElse<Parent> else_();
 
 	public abstract <T> IJBArrayFor<? extends IJBArrayIf<Parent>, T> for_(T[] ts);
 

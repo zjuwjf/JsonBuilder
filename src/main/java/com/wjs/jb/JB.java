@@ -5,14 +5,14 @@ import com.wjs.jb.abs.IJBJsonAdapter;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
-public abstract class AbsJB extends IJBAppend {
+public abstract class JB extends IJBAppend {
 
 	private IJBFilter[] globalFilters;
 	private Object root;
 
-	public AbsJB() {
+	public JB() {
 
 	}
 
@@ -22,30 +22,30 @@ public abstract class AbsJB extends IJBAppend {
 		return globalFilters;
 	}
 
-	public AbsJB addFilters(IJBFilter... filters) {
+	public JB addFilters(IJBFilter... filters) {
 		globalFilters = JBUtils.arrayCat(globalFilters, filters);
 		return this;
 	}
 
-	public AbsJB v(Object value) {
+	public JB v(Object value) {
 		append(null, jsonAdapter().transformV(value));
 		return this;
 	}
 
-	public JBObject<AbsJB> o() {
+	public JBObject<JB> o() {
 		return o(null);
 	}
 
-	public JBArray<AbsJB> a() {
+	public JBArray<JB> a() {
 		return a(null);
 	}
 
-	public JBObject<AbsJB> o(final IJBFilter filter) {
-		return new JBObject<AbsJB>(this, this, null, true, filter);
+	public JBObject<JB> o(final IJBFilter filter) {
+		return new JBObject<JB>(this, this, null, true, filter);
 	}
 
-	public JBArray<AbsJB> a(final IJBFilter filter) {
-		return new JBArray<AbsJB>(this, this, null, true, filter);
+	public JBArray<JB> a(final IJBFilter filter) {
+		return new JBArray<JB>(this, this, null, true, filter);
 	}
 
 	public Object json() {

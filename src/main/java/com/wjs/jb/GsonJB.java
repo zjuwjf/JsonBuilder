@@ -17,7 +17,7 @@ import com.wjs.jb.abs.IJBJsonAdapter;
  * @author zju_wjf
  * @date 2016-12-11
  */
-public class GsonJB extends AbsJB implements IJBJsonAdapter {
+public class GsonJB extends JB implements IJBJsonAdapter {
 
 	//格式化
 	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
