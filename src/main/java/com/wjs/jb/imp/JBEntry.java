@@ -1,11 +1,11 @@
 /**
  *
  */
-package com.wjs.jb;
+package com.wjs.jb.imp;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
 public class JBEntry {
 	private String key;
@@ -21,7 +21,7 @@ public class JBEntry {
 	}
 
 	/**
-	 * »ñÈ¡key
+	 * ï¿½ï¿½È¡key
 	 *
 	 * @return key
 	 */
@@ -30,7 +30,7 @@ public class JBEntry {
 	}
 
 	/**
-	 * ÉèÖÃkey
+	 * ï¿½ï¿½ï¿½ï¿½key
 	 *
 	 * @param key
 	 */
@@ -39,7 +39,7 @@ public class JBEntry {
 	}
 
 	/**
-	 * »ñÈ¡value
+	 * ï¿½ï¿½È¡value
 	 *
 	 * @return value
 	 */
@@ -48,7 +48,7 @@ public class JBEntry {
 	}
 
 	/**
-	 * ÉèÖÃvalue
+	 * ï¿½ï¿½ï¿½ï¿½value
 	 *
 	 * @param value
 	 */

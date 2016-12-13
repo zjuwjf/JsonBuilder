@@ -3,11 +3,11 @@
  */
 package com.wjs.jb.abs;
 
-import com.wjs.jb.IJBAppend;
+import com.wjs.jb.imp.IJBAppend;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
 public interface IJBArrayForIter<GrandParentType extends IJBAppend> {
 	GrandParentType efor();

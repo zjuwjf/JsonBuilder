@@ -4,8 +4,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.wjs.jb.imp.FastJsonJB;
-import com.wjs.jb.imp.GsonJB;
+import com.wjs.jb.FastJsonJB;
+import com.wjs.jb.GsonJB;
+import com.wjs.jb.JsonJB;
+import com.wjs.jb.imp.JB;
+import com.wjs.jb.imp.JBEntry;
 import com.wjs.jb.testbean.Product;
 import com.wjs.jb.testbean.ProductExtra;
 import com.wjs.jb.testbean.ProductPromotionPolicy;
@@ -216,7 +219,7 @@ public class AppTest extends TestCase {
 		ProductPromotionPolicy promotionPolicy1 = new ProductPromotionPolicy("满300减100");
 		ProductPromotionPolicy promotionPolicy2 = new ProductPromotionPolicy("满500减200");
 
-		final JB jb = new GsonJB();
+		final JB jb = new JsonJB();
 		//@formatter:off
 		jb.o()
 			.parse(product)

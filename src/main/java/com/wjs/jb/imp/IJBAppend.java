@@ -1,11 +1,11 @@
 /**
  *
  */
-package com.wjs.jb;
+package com.wjs.jb.imp;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
 public abstract class IJBAppend extends IJBBase{
 	//not public, not protected

@@ -1,33 +1,36 @@
 /**
  *
  */
-package com.wjs.jb.imp;
+package com.wjs.jb;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Map.Entry;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.wjs.jb.JB;
-import com.wjs.jb.JBConstants;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.wjs.jb.abs.IJBJsonAdapter;
+import com.wjs.jb.imp.JB;
+import com.wjs.jb.imp.JBConstants;
 
 /**
  * @author zju_wjf
  * @date 2016-12-11
  */
-public class JsonJB extends JB implements IJBJsonAdapter {
+public class FastJsonJB extends JB implements IJBJsonAdapter {
 
-	public JsonJB() {
+	public FastJsonJB() {
 		this.addFilters(JBConstants.DEFAULT_FILTER);
 	}
 
 	@Override
+	public JSON json() {
+		return (JSON) super.json();
+	}
+
+	@Override
 	public String toString() {
-		return json().toString();
+		return json().toJSONString();
 	}
 
 	@Override
@@ -59,12 +62,16 @@ public class JsonJB extends JB implements IJBJsonAdapter {
 	@Override
 	public void appendArray(Object jsonArray, String key, Object value) {
 		JSONArray ja = (JSONArray) jsonArray;
-		ja.put(transformV(value));
+		ja.add(transformV(value));
 	}
 
 	@Override
 	public Object transformV(Object value) {
-		return JSONObject.wrap(value);
+		if (value instanceof JSON) {
+			return value;
+		} else {
+			return JSON.toJSON(value);
+		}
 	}
 
 	@Override
@@ -73,18 +80,13 @@ public class JsonJB extends JB implements IJBJsonAdapter {
 	}
 
 	@Override
-	public Collection<? extends Entry<String, ? extends Object>> split(Object bean) {
+	public Collection< ? extends Entry<String, ? extends Object>> split(Object bean) {
 		Object je = this.transformV(bean);
-		if(je instanceof JSONObject) {
-			JSONObject jo = (JSONObject)je;
-
-			Map<String, Object> map = new HashMap<String, Object>();
-			for (final String key : ((JSONObject) je).keySet()) {
-                final Object value = jo.get(key);
-                map.put(key, value);
-            }
-
-			return map.entrySet();
+		if(je != null) {
+			if(je instanceof JSONObject) {
+				JSONObject jo = (JSONObject)je;
+				return jo.entrySet();
+			}
 		}
 		return null;
 	}

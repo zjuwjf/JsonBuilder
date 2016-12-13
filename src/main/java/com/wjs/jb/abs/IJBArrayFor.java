@@ -3,7 +3,7 @@
  */
 package com.wjs.jb.abs;
 
-import com.wjs.jb.IJBAppend;
+import com.wjs.jb.imp.IJBAppend;
 
 /**
  * @author zju_wjf

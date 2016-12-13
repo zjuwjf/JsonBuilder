@@ -3,17 +3,17 @@
  */
 package com.wjs.jb.abs;
 
-import com.wjs.jb.JBEntry;
+import com.wjs.jb.imp.JBEntry;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
 public interface IJBFilter {
 	/**
 	 * if true then include, else exclude
 	 * @author zju_wjf
-	 * @date 2016Äê12ÔÂ10ÈÕ
+	 * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
 	 * @param entry
 	 * @return
 	 */

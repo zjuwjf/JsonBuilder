@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.wjs.jb;
+package com.wjs.jb.imp;
 
 import java.util.Arrays;
 import java.util.Collection;

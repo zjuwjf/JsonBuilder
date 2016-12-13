@@ -1,4 +1,4 @@
-package com.wjs.jb;
+package com.wjs.jb.imp;
 
 import com.wjs.jb.abs.IJBFilter;
 import com.wjs.jb.abs.IJBJsonAdapter;
@@ -13,7 +13,6 @@ public abstract class JB extends IJBAppend {
 	private Object root;
 
 	public JB() {
-
 	}
 
 	protected abstract IJBJsonAdapter jsonAdapter();

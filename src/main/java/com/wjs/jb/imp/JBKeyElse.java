@@ -1,4 +1,4 @@
-package com.wjs.jb;
+package com.wjs.jb.imp;
 
 import com.wjs.jb.abs.IJBFilter;
 import com.wjs.jb.abs.IJBKeyElse;

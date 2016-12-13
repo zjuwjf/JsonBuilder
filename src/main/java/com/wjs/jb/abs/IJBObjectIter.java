@@ -3,7 +3,7 @@
  */
 package com.wjs.jb.abs;
 
-import com.wjs.jb.JBEntry;
+import com.wjs.jb.imp.JBEntry;
 
 /**
  * @author zju_wjf

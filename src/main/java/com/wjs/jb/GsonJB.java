@@ -1,41 +1,46 @@
 /**
  *
  */
-package com.wjs.jb.imp;
+package com.wjs.jb;
 
 import java.util.Collection;
 import java.util.Map.Entry;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.wjs.jb.JB;
-import com.wjs.jb.JBConstants;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.wjs.jb.abs.IJBJsonAdapter;
+import com.wjs.jb.imp.JB;
+import com.wjs.jb.imp.JBConstants;
 
 /**
  * @author zju_wjf
  * @date 2016-12-11
  */
-public class FastJsonJB extends JB implements IJBJsonAdapter {
+public class GsonJB extends JB implements IJBJsonAdapter {
 
-	public FastJsonJB() {
+	//格式化
+	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+	public GsonJB() {
 		this.addFilters(JBConstants.DEFAULT_FILTER);
 	}
 
 	@Override
-	public JSON json() {
-		return (JSON) super.json();
+	public JsonElement json() {
+		return (JsonElement) super.json();
 	}
 
 	@Override
 	public String toString() {
-		return json().toJSONString();
+		return gson.toJson(json());
 	}
 
 	@Override
 	public Object object() {
-		return new JSONObject();
+		return new JsonObject();
 	}
 
 	@Override
@@ -45,7 +50,7 @@ public class FastJsonJB extends JB implements IJBJsonAdapter {
 
 	@Override
 	public Object array() {
-		return new JSONArray();
+		return new JsonArray();
 	}
 
 	@Override
@@ -55,22 +60,22 @@ public class FastJsonJB extends JB implements IJBJsonAdapter {
 
 	@Override
 	public void appendObject(Object jsonObject, String key, Object value) {
-		JSONObject jo = (JSONObject) jsonObject;
-		jo.put(key, transformV(value));
+		JsonObject jo = (JsonObject) jsonObject;
+		jo.add(key, transformV(value));
 	}
 
 	@Override
 	public void appendArray(Object jsonArray, String key, Object value) {
-		JSONArray ja = (JSONArray) jsonArray;
+		JsonArray ja = (JsonArray) jsonArray;
 		ja.add(transformV(value));
 	}
 
 	@Override
-	public Object transformV(Object value) {
-		if (value instanceof JSON) {
-			return value;
+	public JsonElement transformV(Object value) {
+		if (value instanceof JsonElement) {
+			return (JsonElement) value;
 		} else {
-			return JSON.toJSON(value);
+			return gson.toJsonTree(value);
 		}
 	}
 
@@ -81,10 +86,10 @@ public class FastJsonJB extends JB implements IJBJsonAdapter {
 
 	@Override
 	public Collection< ? extends Entry<String, ? extends Object>> split(Object bean) {
-		Object je = this.transformV(bean);
+		JsonElement je = this.transformV(bean);
 		if(je != null) {
-			if(je instanceof JSONObject) {
-				JSONObject jo = (JSONObject)je;
+			if(je.isJsonObject()) {
+				JsonObject jo = (JsonObject)je;
 				return jo.entrySet();
 			}
 		}

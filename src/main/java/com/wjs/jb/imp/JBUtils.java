@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.wjs.jb;
+package com.wjs.jb.imp;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -10,7 +10,7 @@ import com.wjs.jb.abs.IJBFilter;
 
 /**
  * @author zju_wjf
- * @date 2016Äê12ÔÂ10ÈÕ
+ * @date 2016ï¿½ï¿½12ï¿½ï¿½10ï¿½ï¿½
  */
 public final class JBUtils {
 
