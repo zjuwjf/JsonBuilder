@@ -16,7 +16,7 @@ public abstract class JB extends IJBAppend {
 
 	}
 
-	abstract IJBJsonAdapter jsonAdapter();
+	protected abstract IJBJsonAdapter jsonAdapter();
 
 	IJBFilter[] filters() {
 		return globalFilters;

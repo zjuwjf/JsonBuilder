@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.wjs.jb.imp.FastJsonJB;
+import com.wjs.jb.imp.GsonJB;
 import com.wjs.jb.testbean.Product;
 import com.wjs.jb.testbean.ProductExtra;
 import com.wjs.jb.testbean.ProductPromotionPolicy;
@@ -159,7 +161,7 @@ public class AppTest extends TestCase {
 	public void testObjectFor() {
 		Integer[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-		final JB jb = new GsonJB();
+		final JB jb = new FastJsonJB();
 		//@formatter:off
 		jb.o()
 			.k("square-table").o()
@@ -192,7 +194,7 @@ public class AppTest extends TestCase {
 
 	public void testObjectParse() throws ParseException {
 		Product product = new Product("Noodle", "China-HangZhou", new SimpleDateFormat("yyyy-MM-dd").parse("2017-11-11"), 120);
-		ProductExtra productExtra = new ProductExtra("taobao");
+		ProductExtra productExtra = new ProductExtra("online");
 		ProductPromotionPolicy promotionPolicy = new ProductPromotionPolicy("满100减30");
 
 		final JB jb = new GsonJB();

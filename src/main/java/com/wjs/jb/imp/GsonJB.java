@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.wjs.jb;
+package com.wjs.jb.imp;
 
 import java.util.Collection;
 import java.util.Map.Entry;
@@ -11,6 +11,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.wjs.jb.JB;
+import com.wjs.jb.JBConstants;
 import com.wjs.jb.abs.IJBJsonAdapter;
 
 /**
@@ -78,7 +80,7 @@ public class GsonJB extends JB implements IJBJsonAdapter {
 	}
 
 	@Override
-	IJBJsonAdapter jsonAdapter() {
+	protected IJBJsonAdapter jsonAdapter() {
 		return this;
 	}
 
